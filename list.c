@@ -45,7 +45,7 @@ void insert(List *l, elem x) {
     return;
 }
 
-void print(List *l) {
+void print_list(List *l) {
     Node *aux = l->begin;
     while (aux != NULL) {
         printf("%d\t", aux->info);
