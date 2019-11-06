@@ -45,13 +45,14 @@ void insert(List *l, elem x) {
     return;
 }
 
-void print_list(List *l) {
+void print_list(List *l, int tam) {
     Node *aux = l->begin;
     while (aux != NULL) {
         printf("%d\t", aux->info);
         aux = aux->next;
     }
-    printf("\n");
+    printf("\nTamanho da lista: %d\n", check_size(l));
+    printf("Total de comparações: %d\n", tam);
     return;
 }
 
