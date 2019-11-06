@@ -4,7 +4,7 @@
 
 struct node {
     elem info;
-    struct node *prox;
+    struct node *next;
 };
 
 struct list {
@@ -23,11 +23,54 @@ void destroy(List **l) {
     Node *aux;
     while ((*l)->begin != NULL) {
         aux = (*l)->begin;
-        (*l)->begin = (*l)->begin->prox;
+        (*l)->begin = (*l)->begin->next;
         free(aux);
     }
     // free list
     free(*l);
     *l = NULL;
     return;
+}
+
+void insert(List *l, elem x) {
+    Node *aux;
+    aux = malloc(sizeof(Node));
+    aux->info = x;
+    aux->next = NULL;
+    if (l->end != NULL)
+        l->end->next = aux;
+    l->end = aux;
+    if (l->begin == NULL)
+        l->begin = aux;
+    return;
+}
+
+void print(List *l) {
+    Node *aux = l->begin;
+    while (aux != NULL) {
+        printf("%d\t", aux->info);
+        aux = aux->next;
+    }
+    printf("\n");
+    return;
+}
+
+int check_size(List *l) {
+    Node *aux = l->begin;
+    int count = 0;
+    while (aux != NULL) {
+        count++;
+        aux = aux->next;
+    }
+    return count;
+}
+
+int check_elem(List *l, elem x) {
+    Node *aux = l->begin;
+    while (aux != NULL) {
+        if (aux->info == x)
+            return 1; 
+        aux = aux->next;
+    }
+    return 0; 
 }
